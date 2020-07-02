@@ -30,7 +30,7 @@ nav { width: 120px;height: 100vh;background: #333;float: left;position: fixed; }
 .content {margin-left: 50px; padding: 20px; position: relative;}
 
 /*입력 박스*/
-#input_area {width: 470px;float: left; padding-right: 10px;}
+#input_area {width: 470px;float: left; padding-right: 10px; position: fixed;}
 #container_area_wrap {margin-left: 470px; }
 label span {width: 64px;display: inline-block;}
 /*컨테이너 박스*/
@@ -57,6 +57,23 @@ border-radius: 5px;font-size: 12px;cursor: move;}
 #boxlist strong {display: inline-block; margin-right: 10px;}
 #boxlist .glyphicon.change_size {padding: 0 10px;}
 #boxlist .badge{font-size:12px; margin-right:3px;padding-top: 4px;}
+/*박스리스트 스크롤바*/
+  #boxlist::-webkit-scrollbar {
+    width: 10px;
+  }
+  #boxlist::-webkit-scrollbar-thumb {
+    background-color: #bbb;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+  #boxlist::-webkit-scrollbar-track {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+  }
+
+
 /*박스 장폭, 폭고 전환 버튼*/
 .tooltip{word-break:break-all;}
 .tooltip .glyphicon {font-size: 20px; padding: 20px;}

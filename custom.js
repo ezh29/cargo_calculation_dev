@@ -152,16 +152,29 @@ $("#boxlist").disableSelection();
 
 //적재함 토글
 $("#togle_btn").on("click", function () {
-    $("#togle_body").toggle(300);
+    $("#togle_body").toggle(function(){
+        boxlist_height();
+    });
 });
 //박스추가 토글
 $("#togle_btn2").on("click", function () {
-    $("#togle_body2").toggle(300);
+    $("#togle_body2").toggle(function(){
+        boxlist_height();
+    });
 });
 //전체 토글
 $("#togle_btn3").on("click", function () {
-    $(".all_toggle_body").toggle(300);
+    $(".all_toggle_body").toggle(function(){
+        boxlist_height();
+    });
 });
+//박스 리스트 사이즈 조절
+function boxlist_height (){
+    var top = $('.box_list_panel').position().top;
+        top = top + 160;
+        var max_height = 'calc(100vh - '+ top +'px)';
+        $('#boxlist').css('max-height',max_height);
+}
 
 
 //드래그 시작

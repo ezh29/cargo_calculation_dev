@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 카카오 메타태그 -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="적재 계산기">
+    <meta property="og:description" content="Gray Sheep">
+    <!-- 구글 메타태그-->
+
+    <title>적재 계산기</title>
+    <meta name="Description" CONTENT="1톤, 2.5톤, 5톤, 11톤, 컨테이너, 적재함, 적재계산, 적재함계산, 적재함계산기, 상차계산, 상차, 화물차적재, 화물차상차, 화물길이계산, 화물계산기">
+    <!-- 구글 애드센스-->
+    <script data-ad-client="ca-pub-5664267100046232" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+
+    <link rel="stylesheet" href="plugin/bootstrap-3.3.2-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css?ver=1.2">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170902576-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-170902576-2');
+
+    </script>
+</head>
+
+<body>
+    <nav></nav>
+
+    <div class="content">
+
+        <div id="input_area">
+            <div class="panel panel_GS_gray">
+                <div class="panel-heading" id="togle_btn3" style="cursor: pointer;">
+                    <h3 class="panel-title" id="panel-title">전체 접기<a class="anchorjs-link" href="#panel-title"><span class="anchorjs-icon"></span></a><span class="glyphicon glyphicon-chevron-down" aria-hidden="true" style="float: right; cursor: pointer;"></span></h3>
+                </div>
+            </div>
+            <div class="all_toggle_body">
+                <div class="panel panel_GS_gray ">
+                    <div class="panel-heading" id="togle_btn" style="cursor: pointer;">
+                        <h3 class="panel-title" id="panel-title">적재함 선택<a class="anchorjs-link" href="#panel-title"><span class="anchorjs-icon"></span></a><span class="glyphicon glyphicon-chevron-down" aria-hidden="true" style="float: right; cursor: pointer;"></span></h3>
+                    </div>
+                    <div class="panel-body" id="togle_body">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="container_size" id="optionsRadios1" value="option1">
+                                <span>1톤 트럭</span> 260*160*160 cm
+                            </label><br />
+                            <label>
+                                <input type="radio" name="container_size" id="optionsRadios1" value="option2">
+                                <span>2.5톤 트럭</span> 420*180*180 cm
+                            </label><br />
+                            <label>
+                                <input type="radio" name="container_size" id="optionsRadios1" value="option3">
+                                <span>5톤 트럭</span> 620*230*230 cm
+                            </label><br />
+                            <label>
+                                <input type="radio" name="container_size" id="optionsRadios1" value="option4" checked>
+                                <span>11톤 트럭</span> 960*240*240 cm
+                            </label><br />
+                            <label>
+                                <input type="radio" name="container_size" id="optionsRadios1" value="option5">
+                                <span>25톤 트럭</span> 1020 * 240 * 240 cm
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label style="min-height: fit-content;">
+                                <input type="radio" name="container_size" id="optionsRadios3" value="size_input">
+                                <span>직접입력</span>
+                            </label>
+                            <form class="form-inline" style="width: auto; margin-bottom: 0;margin-top: 3px;">
+                                <div class="form-group">
+                                    <input style="width: 50px;" type="tel" pattern="[0-9]*" class="form-control" id="container_size_1" placeholder="장"> X
+
+                                    <input style="width: 50px" type="tel" pattern="[0-9]*" class="form-control" id="container_size_2" placeholder="폭"> X
+
+                                    <input style="width: 50px" type="tel" pattern="[0-9]*" class="form-control" id="container_size_3" placeholder="고"> cm
+                                </div>
+                            </form>
+                        </div>
+                        <!--                    <hr />-->
+                        <!--                    적재함 사이즈-->
+                        <!--                    <div class="well" style="text-align: center; margin-bottom: 0;"> <span class="container_info" style="font-weight: bold;"></span></div>-->
+                    </div>
+                </div>
+                <div class="panel panel_GS_gray ">
+                    <div class="panel-heading" id="togle_btn2" style="cursor: pointer;">
+                        <h3 class="panel-title" id="panel-title">박스 추가<a class="anchorjs-link" href="#panel-title"><span class="anchorjs-icon"></span></a><span class="glyphicon glyphicon-chevron-down" aria-hidden="true" style="float: right; "></span></h3>
+                    </div>
+                    <div class="panel-body" id="togle_body2">
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <span style="margin-right: 5px;">박스명 </span>
+                                <input style="width: 100px; margin-right:10px" type="text" class="form-control" id="box_val_1" placeholder="">
+                                <span style="margin-right: 5px;">최대단수 설정 </span>
+                                <input style="width: 50px; margin-right:5px" type="tel" pattern="[0-9]*" class="form-control" id="box_val_6" placeholder="0" value="1"> 단
+                                <label class="checkbox-inline" style="margin-left: 10px;">
+                                    <input type="checkbox" id="chk_no_dan" value="option1"> 최대단수 자동계산
+                                </label>
+                            </div>
+                        </form>
+                        <form class="form-inline">
+
+                            <div class="form-group">
+                                <span style="margin-right: 5px;">박스사이즈 </span>
+                                <input style="width: 50px" type="tel" pattern="[0-9]*" class="form-control" id="box_val_2" placeholder="장"> X
+                                <input style="width: 50px" type="tel" pattern="[0-9]*" class="form-control" id="box_val_3" placeholder="폭"> X
+                                <input style="width: 50px" type="tel" pattern="[0-9]*" class="form-control" id="box_val_4" placeholder="고"> cm
+                                <span style="margin-left:  5px;">수량 </span>
+                                <input style="width: 50px; margin-right:5px" type="tel" pattern="[0-9]*" class="form-control" id="box_val_5" placeholder="0" value="1"> 개
+                            </div>
+                        </form>
+                        <div style="overflow: hidden">
+                            <button type="button" onclick="addBoxValue_btn();" class="btn btn-default btn-block" style="width: 100%;"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> 박스 추가</button>
+                            <button type="button" onclick="start_bubbleSort1_btn();" class="btn btn-default btn-block" style="width: 24%;margin-top: 5px;display: inline-block;float: left;margin-right: 1.33%;"><span class="glyphicon glyphicon-resize-horizontal" aria-hidden="true"></span> 가로 少</button>
+                            <button type="button" onclick="start_bubbleSort2_btn();" class="btn btn-default btn-block" style="width: 24%;margin-top: 5px;display: inline-block;float: left;margin-right: 1.33%;"><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span> 세로 少</button>
+                            <button type="button" onclick="start_bubbleSort1_2_btn();" class="btn btn-default btn-block" style="width: 24%;margin-top: 5px;display: inline-block;float: left;margin-right: 1.33%;"><span class="glyphicon glyphicon-resize-horizontal" aria-hidden="true"></span> 가로 太</button>
+                            <button type="button" onclick="start_bubbleSort2_2_btn();" class="btn btn-default btn-block" style="width: 24%;margin-top: 5px;display: inline-block;float: left;"><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span> 세로 太</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel_GS_red box_list_panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title" id="panel-title">박스 목록<a class="anchorjs-link" href="#panel-title">
+                            <span class="anchorjs-icon"></span></a>
+                        <span class="badge all_cbm">총 0 CBM</span>
+                        <span class="badge full_box"></span>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="boxlist_info">
+                        <p>
+                            <span class="glyphicon glyphicon-triangle-top " aria-hidden="true"></span><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span> 클릭 순서변경 &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-resize-horizontal " aria-hidden="true"></span> 장폭 변경 &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span> 폭고 변경 &nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> 박스 삭제<br>PC에서 드래그로 박스 순서 변경이 가능합니다.
+                        </p>
+                        <span class="glyphicon glyphicon-trash" aria-hidden="true" onclick="all_delet_boxlist_btn();"></span>
+                    </div>
+                    <ul id="boxlist">
+                        <li class="ui-state-default" style="border-color:rgb(111,111,111);">
+                            <p>박스명<br></p><strong>가로*세로*높이</strong>수량 <div class="list_btn_group"><span class="badge"> 0단</span><span class="badge"> 0CBM</span><span class="glyphicon glyphicon-triangle-top change_size" aria-hidden="true"></span><span class="glyphicon glyphicon-triangle-bottom change_size" aria-hidden="true"></span><span class="glyphicon glyphicon-resize-horizontal change_size" aria-hidden="true"></span><span class="glyphicon glyphicon-resize-vertical change_size" aria-hidden="true"></span><span class="glyphicon glyphicon-remove" aria-hidden="true"></span> </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <div id="container_area_wrap">
+            <div id="container_area">
+                <!--적재함 사이즈-->
+                <div class="" style="margin-bottom: 0; color: #666; height: 20px;">
+                    <span class="container_info" style="font-weight: bold;">
+                        <span class="container_info1 badge"></span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--<p style="position: fixed;    top: 5px;    right: 5px; text-align: right">dev_ver 1.1.2 추가사항<br />박스 클릭시 툴팁이 생기며<br />툴팁 내의 장폭고 조절 버튼을 통해<br /> 박스의 장폭고 조절이가능합니다.</p>-->
+    <img class="btn_float" src="img/profile.png" alt="" data-toggle="tooltip" data-html="true" data-placement="left" title="안녕?" onclick="window.open('https://ezh29.github.io/portfolio/')">
+</body>
+<script type="text/javascript" src="plugin/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="plugin/jquery-ui.js"></script>
+<script type="text/javascript" src="custom.js?ver=1.6"></script>
+<script type="text/javascript" src="plugin/bootstrap-3.3.2-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="plugin/touch-punch.min.js"></script>
+<script>
+    $(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+        $('.btn_float').mouseenter(function() {
+            var txt = [
+                "웬 빨간 양?",
+                "오늘도 힘내~",
+                "점심 뭐 먹을 거야?",
+                "퇴근 30분 남았어!",
+                "아아 먹고 싶다..",
+                "저녁 뭐 먹지?",
+                "야옹",
+                "야옹야옹",
+                "나는 햄버거가 좋아",
+                "이번 여름은 너무 더울 거 같아..",
+                "누르면 나에 대해 알 수 있어",
+                "내가 몇 가지나 말하나 궁금해?",
+                "버그가 있어도 귀엽게 봐줘...",
+                "그래도 이 정도면 <br/>쓸만하지..?",
+                "도움이 많이 됐으면 좋겠다",
+                "오늘도 켰네! <br/>자주 사용해서 기분좋아",
+                "복길이가 매질해서 만든 작품이야",
+                "뽀실이는 뽀실뽀실",
+                "QA대장 복길이",
+                "내 이름은 '양뽀실'이야"
+
+            ];
+            var i = getRandom(1, txt.length);
+            //$('.btn_float').attr("title", txt[i]);
+            $('.btn_float').attr("data-original-title", txt[i]);
+            $('[data-toggle="tooltip"]').tooltip();
+
+        })
+
+        function getRandom(min, max) {
+            return Math.floor((Math.random() * (max - min + 1)) + min);
+        }
+
+    });
+
+</script>
+
+</html>

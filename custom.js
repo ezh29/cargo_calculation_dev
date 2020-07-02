@@ -170,11 +170,23 @@ $("#togle_btn3").on("click", function () {
 });
 //박스 리스트 사이즈 조절
 function boxlist_height (){
-    var top = $('.box_list_panel').position().top;
+    if( 800 < window.innerHeight ){
+        var top = $('.box_list_panel').position().top;
         top = top + 160;
         var max_height = 'calc(100vh - '+ top +'px)';
         $('#boxlist').css('max-height',max_height);
+        $('#input_area').css('position','fixed');
+        
+    }else{
+        //브라우저 높이 660 이하일떄는 최대높이 없음
+        $('#boxlist').css('max-height','none');
+        $('#input_area').css('position','relative');
+    }
+    
 }
+$( window ).resize( function() {
+  boxlist_height ();
+} );
 
 
 //드래그 시작

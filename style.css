@@ -4,7 +4,7 @@ body{font-size: 12px;}
 .form-control {padding: 5px;text-align: center;display: inline-block !important;}
 .radio label {min-height: 25px;}
 .radio {  margin-top: 0px;     margin-bottom: 0px;}
-
+.form-group {margin-bottom: 0 !important;}
 .form-inline {display: inline-block; width:100%; margin-bottom: 10px;}
 input[type='text'], input[type='tel'] {height: 25px !important;width: 66px !important}
 input::placeholder {font-size: 12px; !important;}
@@ -95,3 +95,8 @@ border-radius: 5px;font-size: 12px;cursor: move;}
 
 /*플로팅 버튼*/
 .btn_float{ width: 61px;border-radius: 50%;position: fixed;right: 10px;bottom: 10px; cursor: pointer;}
+
+/*높이 작을때*/
+@media screen and (min-height:0px) and (max-height:550px) {
+  
+}

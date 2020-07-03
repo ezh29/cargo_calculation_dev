@@ -30,7 +30,7 @@
     },
 
     {
-      "src": "/cons/res/mipmap-xxxhdpi/ic_launcher.png",
+      "src": "icons/res/mipmap-xxxhdpi/ic_launcher.png",
       "sizes": "192x192",
       "type": "image\/png",
       "density": "4.0"

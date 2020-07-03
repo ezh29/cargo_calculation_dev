@@ -1,7 +1,7 @@
 //// Register service worker to control making site work offline
 //if('serviceWorker' in navigator) {
 //  navigator.serviceWorker
-//           .register('/sw.js')
+//           .register('sw.js')
 //           .then(function() { console.log('Service Worker Registered'); });
 //}
 //// Code to handle install prompt on desktop
@@ -15,7 +15,7 @@
 
 /* PWA settings */
 if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js').then(function (registration) {
+    navigator.serviceWorker.register('sw.js').then(function (registration) {
         // Registration was successful
         console.log('ServiceWorker registration successful with scope: ', registration.scope);
     }).catch(function (err) {
@@ -32,7 +32,7 @@ let newWorker;
 
 if ('serviceWorker' in navigator) { //서비스 워커 버전 업데이트시 버튼 visible (주석처리)
     // Register the service worker
-    navigator.serviceWorker.register('/sw.js').then(function(reg){
+    navigator.serviceWorker.register('sw.js').then(function(reg){
         reg.addEventListener('updatefound', function() {
 
             // An updated service worker has appeared in reg.installing!

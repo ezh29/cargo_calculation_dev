@@ -86,6 +86,8 @@ $("input:radio[name=container_size]").click(function () {
         default:
             //위의 값 A~E 모두 아닐때 실행할 명령문;
     }
+    //박스 다시넣기
+    boxincontainer_init();
 });
 
 //박스 입력 벨리데이션

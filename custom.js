@@ -154,41 +154,41 @@ $("#boxlist").disableSelection();
 
 //적재함 토글
 $("#togle_btn").on("click", function () {
-    $("#togle_body").toggle(function(){
+    $("#togle_body").toggle(function () {
         boxlist_height();
     });
 });
 //박스추가 토글
 $("#togle_btn2").on("click", function () {
-    $("#togle_body2").toggle(function(){
+    $("#togle_body2").toggle(function () {
         boxlist_height();
     });
 });
 //전체 토글
 $("#togle_btn3").on("click", function () {
-    $(".all_toggle_body").toggle(function(){
+    $(".all_toggle_body").toggle(function () {
         boxlist_height();
     });
 });
 //박스 리스트 사이즈 조절
-function boxlist_height (){
-    if( 800 < window.innerHeight ){
+function boxlist_height() {
+    if (800 < window.innerHeight) {
         var top = $('.box_list_panel').position().top;
         top = top + 160;
-        var max_height = 'calc(100vh - '+ top +'px)';
-        $('#boxlist').css('max-height',max_height);
-        $('#input_area').css('position','fixed');
-        
-    }else{
+        var max_height = 'calc(100vh - ' + top + 'px)';
+        $('#boxlist').css('max-height', max_height);
+        $('#input_area').css('position', 'fixed');
+
+    } else {
         //브라우저 높이 660 이하일떄는 최대높이 없음
-        $('#boxlist').css('max-height','none');
-        $('#input_area').css('position','relative');
+        $('#boxlist').css('max-height', 'none');
+        $('#input_area').css('position', 'relative');
     }
-    
+
 }
-$( window ).resize( function() {
-  boxlist_height ();
-} );
+$(window).resize(function () {
+    boxlist_height();
+});
 
 
 //드래그 시작
@@ -205,23 +205,19 @@ function drag_start() {
             stop: function () {
                 get_boxs_heigth();
             },
-            //겹쳐지면 원래 위치로 돌아감
-            revert: "valid"
+            //            //겹쳐지면 원래 위치로 돌아감
+            //            revert: "valid"
 
         });
     });
     $(".box_inner").droppable({
-//        drop: function (event, ui) {
-//            $(this).removeClass("bg_red");
-//            $(this)
-//                .addClass("ui-state-highlight")
-//                .addClass("bg_red");
-//        },
-//        out: function (event, ui) {
-//            $(this)
-//                .addClass("ui-state-highlight")
-//                .removeClass("bg_red");
-//        },
+        drop: function (event, ui) {
+            if (confirm("박스가 겹칩니다. 원래위치로 놓겠습니까?") == true) { //확인
+                $(".box").draggable({revert: "valid"});
+            } else { //취소
+                $(".box").draggable({revert: "invalid"});
+            }
+        },
         tolerance: "touch",
         greedy: true,
     });

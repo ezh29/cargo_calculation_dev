@@ -79,7 +79,7 @@ $("input:radio[name=container_size]").click(function () {
                 var val = $(this).val();
                 //console.log("val", val);
                 container[2] = Number(val);
-                console.log('container', container);
+                //console.log('container', container);
                 $('.container_info1').html(container[0] + ' * ' + container[1] + ' * ' + container[2]);
             });
             break;
@@ -145,7 +145,7 @@ $("#boxlist").sortable({
 
             }
         }
-        console.log('box', box);
+        //console.log('box', box);
         //컨테이너 박스넣기 재실행
         boxincontainer_init();
     }
@@ -204,23 +204,26 @@ function drag_start() {
             stack: ".box",
             stop: function () {
                 get_boxs_heigth();
-            }
+            },
+            //겹쳐지면 원래 위치로 돌아감
+            revert: "valid"
 
         });
     });
     $(".box_inner").droppable({
-        drop: function (event, ui) {
-            $(this).removeClass("bg_red");
-            $(this)
-                .addClass("ui-state-highlight")
-                .addClass("bg_red");
-        },
-        out: function (event, ui) {
-            $(this)
-                .addClass("ui-state-highlight")
-                .removeClass("bg_red");
-        },
+//        drop: function (event, ui) {
+//            $(this).removeClass("bg_red");
+//            $(this)
+//                .addClass("ui-state-highlight")
+//                .addClass("bg_red");
+//        },
+//        out: function (event, ui) {
+//            $(this)
+//                .addClass("ui-state-highlight")
+//                .removeClass("bg_red");
+//        },
         tolerance: "touch",
+        greedy: true,
     });
 }
 //툴팁 시작
@@ -289,14 +292,14 @@ function addBoxValue_btn() {
         if (dan >= 1) { //1단 이상으로 쌓을수 있을때 = 적재가능
             if (new_box[9] != "0") { //다단적재가 0이 아니고, 높이 *최대단수가 컨테이너 높이보다 작으면 단을 최대단수로 입력
                 dan = new_box[9];
-                console.log((new_box[9] * new_box[3]) < container[2]);
+                //console.log((new_box[9] * new_box[3]) < container[2]);
             }
             if (new_box[4] > dan) { //최대 단수보다 수량이 많을때
                 new_box[6] = parseInt(new_box[4] / dan); //수량을 단으로 나눔 = 묶음 수 (표시되는 상자 수)
-                console.log("묶음 수", new_box[6]);
+                //console.log("묶음 수", new_box[6]);
                 new_box[5] = dan; //단수 입력
                 new_box[7] = new_box[4] % dan; //묶음 나머지수
-                console.log("묶음 나머지 수", new_box[7]);
+                //console.log("묶음 나머지 수", new_box[7]);
 
             } else { //단수로 쌓을수 있으나 그보다 수량이 적거나 같을때
                 //단수 = 수량 (수량이 단수가 됨)
@@ -328,10 +331,10 @@ function boxincontainer_init() {
             }
             if (box[i][4] > dan) { //최대 단수보다 수량이 많을때
                 box[i][6] = parseInt(box[i][4] / dan); //수량을 단으로 나눔 = 묶음 수 (표시되는 상자 수)
-                console.log("묶음 수", box[i][6]);
+                //console.log("묶음 수", box[i][6]);
                 box[i][5] = dan; //단수 입력
                 box[i][7] = box[i][4] % dan; //묶음 나머지수
-                console.log("묶음 나머지 수", box[i][7]);
+                //console.log("묶음 나머지 수", box[i][7]);
 
             } else { //단수로 쌓을수 있으나 그보다 수량이 적거나 같을때
                 //단수 = 수량 (수량이 단수가 됨)
@@ -438,7 +441,7 @@ function box_list_init() {
         $('#boxlist').append(append);
     }
     $('.all_cbm').html('총 ' + all_CBM + ' CBM');
-    console.log("all_CBM", all_CBM);
+    //console.log("all_CBM", all_CBM);
     all_init();
 }
 //박스 삭제
@@ -558,7 +561,7 @@ function ch_garo_btn(i) {
     var target_box = $('.box[box_idx="' + i + '"]');
     //i번쨰 배열의 장폭 변경
     var d = "";
-    console.log("box[i][1]", box[i][1]);
+    //console.log("box[i][1]", box[i][1]);
     d = box[i][1]; //d에 장 담아놓음
     box[i][1] = box[i][2]; //장에 폭 넣음
     box[i][2] = d; //폭에 장 넣음
@@ -571,7 +574,7 @@ function ch_sero_btn(i) {
     var target_box = $('.box[box_idx="' + i + '"]');
     //i번쨰 배열의 폭고 변경
     var d = "";
-    console.log("box[i][2]", box[i][2]);
+    //console.log("box[i][2]", box[i][2]);
     d = box[i][2]; //d에 폭 담아놓음
     box[i][2] = box[i][3]; //폭에 고 넣음
     box[i][3] = d; //고에 폭 넣음
@@ -608,7 +611,7 @@ function ch_down_btn(i) {
 function get_boxs_heigth() {
     var box_position = [];
     var start = $('#container').position();
-    console.log("start ", start, "bottom", (start.top + container[0]), "right", (start.left + container[0]));
+    //console.log("start ", start, "bottom", (start.top + container[0]), "right", (start.left + container[0]));
     //자식들 복사
     var boxs = $('#container').children();
     for (var i = 0; i < boxs.length; i++) {
@@ -638,11 +641,11 @@ function get_boxs_heigth() {
             }
         }
     }
-    console.log("너비 큰순 정렬", box_position_width);
+    //console.log("너비 큰순 정렬", box_position_width);
 
     //밖으로 나간거 제외
     array_out(box_position_width, start);
-    console.log("너비 큰순 정렬2", box_position_width);
+    //console.log("너비 큰순 정렬2", box_position_width);
 
 
     //높이 큰순으로 정렬
@@ -658,11 +661,11 @@ function get_boxs_heigth() {
             }
         }
     }
-    console.log("높이 큰순 정렬", box_position_height);
+    //console.log("높이 큰순 정렬", box_position_height);
 
     //밖으로 나간거 제외
     array_out(box_position_height, start);
-    console.log("높이 큰순 정렬2", box_position_height);
+    //console.log("높이 큰순 정렬2", box_position_height);
 
 
     //가장 높은 고 구하기 [6]*높이
@@ -682,7 +685,7 @@ function get_boxs_heigth() {
         }
     }
 
-    console.log("box_position", box_position);
+    //console.log("box_position", box_position);
 
     //너비 높이는 맨 오른쪽 - 맨 왼쪽 
     full_width = box_position_width[0].right - box_position_width[box_position_width.length - 1].left;
@@ -693,7 +696,7 @@ function get_boxs_heigth() {
     full_height = Math.floor(full_height * 100) / 100;
 
 
-    console.log("full", full_height, full_width, box_height[0]);
+    //console.log("full", full_height, full_width, box_height[0]);
 
 
     $('.full_box').html(" 박스 너비 " + full_height + ' * ' + full_width + ' * ' + box_height[0] + ' = ' + numberWithCommas((full_height * full_width * box_height[0]) / 100) + "㎥");

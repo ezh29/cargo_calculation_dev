@@ -459,7 +459,7 @@ function box_list_init() {
         if (box[i][9] != "0" && box[i][9] > box[i][4]) { //최대단수 설정이 수량보다 크면 뱃지 비활성화
             dansu = '<span class="badge" style="background-color:#bbb;"> ' + box[i][9] + '단</span>';
         } else if (box[i][9] != "0") {} else { //최대단수 설정이 없으면
-            dansu = '';
+            dansu = '<span class="badge" style="background-color:#fff;color:#414344;border: 1px solid #414344;">자동</span>';;
         }
 
         if (box[i][0] != "") {

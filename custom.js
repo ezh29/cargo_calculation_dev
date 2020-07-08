@@ -43,9 +43,9 @@ $("input:radio[name=container_size]").click(function () {
             container_set = [1020, 240, 240];
             chk_boxs_hw();
             break;
-//        case "직접입력":
-//            //직접입력은 적용 버튼을 눌러야 실행됨
-//            break;
+            //        case "직접입력":
+            //            //직접입력은 적용 버튼을 눌러야 실행됨
+            //            break;
         default:
             //위의 값 A~E 모두 아닐때 실행할 명령문;
     }
@@ -60,65 +60,71 @@ function container_css(radioVal) {
 }
 //박스높이가 설정하려는 컨테이너보다 작은지 체크
 function chk_boxs_hw() {
-    //높이순으로 정렬
-    var boxs_height = [];
-    for (var i = 0; i < box.length; i++) {
-        //박스묶음 높이 = 박스 높이 * 설정 다단적재
-        boxs_height[i] = box[i][3] * box[i][9];
-    }
-    var length = boxs_height.length;
-    var i, j, temp;
-    //큰순으로 정렬
-    for (i = 0; i < length - 1; i++) { // 순차적으로 비교하기 위한 반복문
-        for (j = 0; j < length - 1 - i; j++) { // 끝까지 돌았을 때 다시 처음부터 비교하기 위한 반복문
-            if (boxs_height[j] < boxs_height[j + 1]) { // 두 수를 비교하여 앞 수가 뒷 수보다 작으면
-                temp = boxs_height[j]; // 두 수를 서로 바꿔준다
-                boxs_height[j] = boxs_height[j + 1];
-                boxs_height[j + 1] = temp;
+    if (box.length > 0) {
+
+        //높이순으로 정렬
+        var boxs_height = [];
+        for (var i = 0; i < box.length; i++) {
+            //박스묶음 높이 = 박스 높이 * 설정 다단적재
+            boxs_height[i] = box[i][3] * box[i][9];
+        }
+        var length = boxs_height.length;
+        var i, j, temp;
+        //큰순으로 정렬
+        for (i = 0; i < length - 1; i++) { // 순차적으로 비교하기 위한 반복문
+            for (j = 0; j < length - 1 - i; j++) { // 끝까지 돌았을 때 다시 처음부터 비교하기 위한 반복문
+                if (boxs_height[j] < boxs_height[j + 1]) { // 두 수를 비교하여 앞 수가 뒷 수보다 작으면
+                    temp = boxs_height[j]; // 두 수를 서로 바꿔준다
+                    boxs_height[j] = boxs_height[j + 1];
+                    boxs_height[j + 1] = temp;
+                }
             }
         }
-    }
-    console.log('boxs_height', boxs_height);
+        console.log('boxs_height', boxs_height);
 
-    //너비순으로 정렬
-    var boxs_width = [];
-    for (var i = 0; i < box.length; i++) {
-        //박스묶음 높이 = 박스 높이 * 설정 다단적재
-        boxs_width[i] = box[i][2];
-    }
-    var length = boxs_width.length;
-    var i, j, temp;
-    //큰순으로 정렬
-    for (i = 0; i < length - 1; i++) { // 순차적으로 비교하기 위한 반복문
-        for (j = 0; j < length - 1 - i; j++) { // 끝까지 돌았을 때 다시 처음부터 비교하기 위한 반복문
-            if (boxs_width[j] < boxs_width[j + 1]) { // 두 수를 비교하여 앞 수가 뒷 수보다 작으면
-                temp = boxs_width[j]; // 두 수를 서로 바꿔준다
-                boxs_width[j] = boxs_width[j + 1];
-                boxs_width[j + 1] = temp;
+        //너비순으로 정렬
+        var boxs_width = [];
+        for (var i = 0; i < box.length; i++) {
+            //박스묶음 높이 = 박스 높이 * 설정 다단적재
+            boxs_width[i] = box[i][2];
+        }
+        var length = boxs_width.length;
+        var i, j, temp;
+        //큰순으로 정렬
+        for (i = 0; i < length - 1; i++) { // 순차적으로 비교하기 위한 반복문
+            for (j = 0; j < length - 1 - i; j++) { // 끝까지 돌았을 때 다시 처음부터 비교하기 위한 반복문
+                if (boxs_width[j] < boxs_width[j + 1]) { // 두 수를 비교하여 앞 수가 뒷 수보다 작으면
+                    temp = boxs_width[j]; // 두 수를 서로 바꿔준다
+                    boxs_width[j] = boxs_width[j + 1];
+                    boxs_width[j + 1] = temp;
+                }
             }
         }
-    }
-    console.log('boxs_width', boxs_width);
+        console.log('boxs_width', boxs_width);
 
-    if (boxs_height[0] > container_set[2]) {
-        alert('설정되어있는 단수*박스높이가 변경하려는 컨테이너의 고보다 높습니다.');
-        $('input[value="' + old_radioVal + '"]').prop('checked', true);
+        if (boxs_height[0] > container_set[2]) {
+            alert('설정되어있는 단수*박스높이가 변경하려는 컨테이너의 고보다 높습니다.');
+            $('input[value="' + old_radioVal + '"]').prop('checked', true);
 
-    }
-    
-    if (boxs_width[0] > container_set[1]) {
-        alert('설정되어있는 박스너비가 변경하려는 컨테이너의 폭보다 큽니다.');
-        $('input[value="' + old_radioVal + '"]').prop('checked', true);
+        }
 
-    } 
-    
-    if ((boxs_height[0] < container_set[2]) && (boxs_width[0] < container_set[1])){
+        if (boxs_width[0] > container_set[1]) {
+            alert('설정되어있는 박스너비가 변경하려는 컨테이너의 폭보다 큽니다.');
+            $('input[value="' + old_radioVal + '"]').prop('checked', true);
+
+        }
+
+        if ((boxs_height[0] < container_set[2]) && (boxs_width[0] < container_set[1])) {
+            container = container_set;
+            container_css(radioVal);
+            old_radioVal = radioVal;
+            $('input[value="' + radioVal + '"]').prop('checked', true);
+            //박스 다시넣기
+            boxincontainer_init();
+        }
+    } else {
         container = container_set;
         container_css(radioVal);
-        old_radioVal = radioVal;
-        $('input[value="' + radioVal + '"]').prop('checked', true);
-        //박스 다시넣기
-        boxincontainer_init();
     }
 
 }

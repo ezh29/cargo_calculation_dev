@@ -102,7 +102,12 @@ function chk_boxs_hw() {
     var boxs_height = [];
     for (var i = 0; i < box.length; i++) {
         //박스묶음 높이 = 박스 높이 * 설정 다단적재
+        if(box[i][9] != 0){
+            
         boxs_height[i] = box[i][3] * box[i][9];
+        }else {//설정 다단적재가 없으면 가장 최소 갯수 높이로
+            boxs_height[i] = box[i][3] * 1;
+        }
     }
     var length = boxs_height.length;
     var i, j, temp;
@@ -121,7 +126,7 @@ function chk_boxs_hw() {
     //너비순으로 정렬
     var boxs_width = [];
     for (var i = 0; i < box.length; i++) {
-        //박스묶음 높이 = 박스 높이 * 설정 다단적재
+        //박스너비
         boxs_width[i] = box[i][2];
     }
     var length = boxs_width.length;
@@ -836,3 +841,8 @@ function array_out(array, start) {
 function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+//인풋 선택시 텍스트 전체선택
+$("input").on("click", function(){
+    $(this).select();
+  });

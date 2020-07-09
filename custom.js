@@ -497,13 +497,13 @@ function box_list_init() {
     var all_CBM = 0;
 
     for (var i = 0; i < box.length; i++) {
-        var dansu = '<span class="badge"> ' + box[i][9] + '단</span>';
+        var dansu = '<span class="badge" style="width:40px;"> ' + box[i][9] + '단</span>';
         var box_name = "";
         //조건따라 단수유무, 배경색 설정
         if (box[i][9] != "0" && box[i][9] > box[i][4]) { //최대단수 설정이 수량보다 크면 뱃지 비활성화
-            dansu = '<span class="badge" style="background-color:#bbb;"> ' + box[i][9] + '단</span>';
+            dansu = '<span class="badge" style="background-color:#bbb; width:40px;"> ' + box[i][9] + '단</span>';
         } else if (box[i][9] != "0") {} else { //최대단수 설정이 없으면
-            dansu = '<span class="badge" style="background-color:#fff;color:#414344;border: 1px solid #414344;">자동</span>';;
+            dansu = '<span class="badge" style="background-color:#fff;color:#414344;border: 1px solid #414344; width:40px;">자동</span>';
         }
 
         if (box[i][0] != "") {
@@ -520,10 +520,10 @@ function box_list_init() {
             box_name + '<strong>' + box[i][1] + '*' + box[i][2] + '*' + box[i][3] + '</strong>' + box[i][4] + '개 ' +
             //그룹
             '<div class="list_btn_group">' +
-            //단수 뱃지
-            dansu +
             //CBM
             '<span class="badge"> ' + CBM + 'CBM</span>' +
+            //단수 뱃지
+            dansu +
             //위아래 버튼
             '<span class="glyphicon glyphicon-triangle-top change_size" aria-hidden="true" onclick="ch_up_btn(' + i + ');"></span>' +
             '<span class="glyphicon glyphicon-triangle-bottom change_size" aria-hidden="true" onclick="ch_down_btn(' + i + ');"></span>' +

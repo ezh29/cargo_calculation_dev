@@ -4,8 +4,16 @@ function all_init() {
     tooltip_start();
     //드래그 초기화
     drag_start();
+    //박스 위치 길이, 너비 구하기
+    get_boxs_heigth();
+    //비용계산
+    calc_price();
 }
 all_init();
+
+var all_CBM = 0;
+var full_width
+var full_height
 
 var container = [];
 var container_set = [];
@@ -51,7 +59,7 @@ $('input:radio[value="11톤"]').trigger("click");
 old_radioVal = "11톤";
 
 //직접입력값 받기
-var container_input = [0,0,0];
+var container_input = [0, 0, 0];
 $("#container_size_1").keyup(function () {
     container_input[0] = Number($("#container_size_1").val());
 });
@@ -102,10 +110,10 @@ function chk_boxs_hw() {
     var boxs_height = [];
     for (var i = 0; i < box.length; i++) {
         //박스묶음 높이 = 박스 높이 * 설정 다단적재
-        if(box[i][9] != 0){
-            
-        boxs_height[i] = box[i][3] * box[i][9];
-        }else {//설정 다단적재가 없으면 가장 최소 갯수 높이로
+        if (box[i][9] != 0) {
+
+            boxs_height[i] = box[i][3] * box[i][9];
+        } else { //설정 다단적재가 없으면 가장 최소 갯수 높이로
             boxs_height[i] = box[i][3] * 1;
         }
     }
@@ -251,41 +259,39 @@ $("#boxlist").disableSelection();
 
 //적재함 토글
 $("#togle_btn").on("click", function () {
-    $("#togle_body").toggle(function () {
-        boxlist_height();
-    });
+    $("#togle_body").toggle();
 });
 //박스추가 토글
 $("#togle_btn2").on("click", function () {
-    $("#togle_body2").toggle(function () {
-        boxlist_height();
-    });
+    $("#togle_body2").toggle();
+});
+$("#togle_btn4").on("click", function () {
+    $("#togle_body4").toggle();
 });
 //전체 토글
 $("#togle_btn3").on("click", function () {
-    $(".all_toggle_body").toggle(function () {
-        boxlist_height();
-    });
+    $(".all_toggle_body").toggle();
 });
-//박스 리스트 사이즈 조절
-function boxlist_height() {
-    if (800 < window.innerHeight) {
-        var top = $('.box_list_panel').position().top;
-        top = top + 160;
-        var max_height = 'calc(100vh - ' + top + 'px)';
-        $('#boxlist').css('max-height', max_height);
-        $('#input_area').css('position', 'fixed');
 
-    } else {
-        //브라우저 높이 660 이하일떄는 최대높이 없음
-        $('#boxlist').css('max-height', 'none');
-        $('#input_area').css('position', 'relative');
-    }
-
-}
-$(window).resize(function () {
-    boxlist_height();
-});
+////박스 리스트 사이즈 조절
+//function boxlist_height() {
+//    if (800 < window.innerHeight) {
+//        var top = $('.box_list_panel').position().top;
+//        top = top + 160;
+//        var max_height = 'calc(100vh - ' + top + 'px)';
+//        $('#boxlist').css('max-height', max_height);
+//        $('#input_area').css('position', 'fixed');
+//
+//    } else {
+//        //브라우저 높이 660 이하일떄는 최대높이 없음
+//        $('#boxlist').css('max-height', 'none');
+//        $('#input_area').css('position', 'relative');
+//    }
+//
+//}
+//$(window).resize(function () {
+//    boxlist_height();
+//});
 
 
 //드래그 시작
@@ -494,7 +500,7 @@ function boxincontainer(new_box, idx, dan) {
 //박스 리스트 가져오기
 function box_list_init() {
     $('#boxlist').empty(); //박스리스트 초기화
-    var all_CBM = 0;
+
 
     for (var i = 0; i < box.length; i++) {
         var dansu = '<span class="badge" style="width:40px;"> ' + box[i][9] + '단</span>';
@@ -511,10 +517,11 @@ function box_list_init() {
         }
 
         //#boxlist에 넣기
+        //장*폭*고*수량
         var CBM = (box[i][1] * 0.01) * (box[i][2] * 0.01) * (box[i][3] * 0.01) * box[i][4];
         CBM = Math.floor(CBM * 100) / 100;
-        all_CBM = all_CBM + CBM;
-        all_CBM = Math.floor(all_CBM * 100) / 100;
+        //        all_CBM = all_CBM + CBM;
+        //        all_CBM = Math.floor(all_CBM * 100) / 100;
 
         var append = '<li class="ui-state-default" style="border-color:rgb(' + box[i][1] + ',' + box[i][2] + ',' + box[i][3] + ');" value="' + box[i] + '">' +
             box_name + '<strong>' + box[i][1] + '*' + box[i][2] + '*' + box[i][3] + '</strong>' + box[i][4] + '개 ' +
@@ -536,8 +543,7 @@ function box_list_init() {
             '</li>';
         $('#boxlist').append(append);
     }
-    $('.all_cbm').html('총 ' + all_CBM + ' CBM');
-    console.log("all_CBM", all_CBM);
+
     all_init();
 }
 //박스 삭제
@@ -703,11 +709,11 @@ function ch_down_btn(i) {
         boxincontainer_init();
     }
 };
-//박스 위치 길이, 너비 구하기
+//박스 위치 길이, 너비 구하기 + 총 CBM구하기(나간것 제외)
 function get_boxs_heigth() {
     var box_position = [];
     var start = $('#container').position();
-    console.log("start ", start, "bottom", (start.top + container[0]), "right", (start.left + container[0]));
+    //console.log("start ", start, "bottom", (start.top + container[0]), "right", (start.left + container[1]));
     //자식들 복사
     var boxs = $('#container').children();
     for (var i = 0; i < boxs.length; i++) {
@@ -715,8 +721,9 @@ function get_boxs_heigth() {
         box_position[i] = boxs.eq(i).position();
         box_position[i].box_idx = Number(boxs[i].attributes[2].value);
         box_position[i].box_dan = Number(boxs[i].attributes[3].value);
-        box_position[i].height = boxs.eq(i).height() + 2;
-        box_position[i].width = boxs.eq(i).width() + 2;
+        box_position[i].height = boxs.eq(i).height() + 2; //장
+        box_position[i].width = boxs.eq(i).width() + 2; //폭
+        box_position[i].go = box[Number(boxs[i].attributes[2].value)][3]; //고
         box_position[i].bottom = box_position[i].top + box_position[i].height;
         box_position[i].right = box_position[i].left + box_position[i].width;
 
@@ -808,7 +815,19 @@ function get_boxs_heigth() {
     console.log("full", full_height, full_width, box_height[0]);
 
 
-    $('.full_box').html(" 박스 너비 " + full_height + ' * ' + full_width + ' * ' + box_height[0] + ' = ' + numberWithCommas((full_height * full_width * box_height[0]) / 100) + "㎥");
+    $('.full_box').html(" 박스 너비 " + full_height + ' * ' + full_width + ' * ' + box_height[0]);
+
+    //CBM 계산 box_position_height
+    all_CBM = 0;
+    for (var i = 0; i < box_position_height.length; i++) {
+        var box_cbm = (box_position_height[i].height * 0.01) * (box_position_height[i].width * 0.01) * (box_position_height[i].go * 0.01) * box_position_height[i].box_dan; //(장*0.01)*(폭*0.01)*(고*0.01)*단
+        all_CBM = all_CBM + box_cbm;
+    }
+    all_CBM = Math.floor(all_CBM * 100) / 100;
+    $('.all_cbm').html('총 ' + all_CBM + ' CBM');
+
+    //가격계산
+    calc_price();
 
 }
 //밖으로 나가는 배열 제거
@@ -843,6 +862,149 @@ function numberWithCommas(x) {
 }
 
 //인풋 선택시 텍스트 전체선택
-$("input").on("click", function(){
+$("input").on("click", function () {
     $(this).select();
-  });
+});
+
+//체크한 기본요금 저장
+var basic_price = 80000;
+$('#basic_price').html(numberWithCommas(basic_price));
+$("input:radio[name=basic_price]").click(function () {
+    basic_price = $('input[name="basic_price"]:checked').val();
+    basic_price = Number(basic_price);
+    $('#basic_price').html(numberWithCommas(basic_price));
+});
+
+//무게 인풋 키 감지
+$("#calc_weigth_input").keyup(function () {
+    calc_price();
+});
+
+//비용계산
+function calc_price() {
+
+    var calc_length = 0;
+    var price_length = 0;
+    var calc_weight = 0;
+    var price_weight = 0;
+    var calc_CBM = 0;
+    var price_CBM = 0;
+
+    //길이운임 계산-------------------------------------------------------------------------
+    //긴 길이를 calc_length에 입력
+    if (full_width >= full_height) {
+        calc_length = full_width;
+    } else {
+        calc_length = full_height;
+    }
+
+    if (calc_length >= 100) {
+        price_length = Math.ceil((calc_length - 100) / 20) * 7000;
+    } else {
+        //길이가 100 이하라 계산 안함
+    }
+    
+    //무게운임---------------------------------------------------------------------------------
+    calc_weight = $('#calc_weigth_input').val();
+    //무게에서 1000뺴고 나누기 200 하고 올림
+        price_weigth = Math.ceil((calc_weight - 1000) / 200) * 6000;
+    //가격이 음수면 0으로 변환
+    if(price_weigth < 0){
+        price_weigth = 0;
+    }
+        
+    //CBM운임------------------------------------------------------------------------------
+    //CBM소수점 자리 정리
+    //CBM 10을 곱하고 버려서 소수점 둘쨰자리 없앰   1.18 -> 11.8 -> 11
+    //10으로 나누어서 소수점 1의자리를 1의자리로 받아냄 11%10 -> 1
+    //1보다 크면 올림, 1보다 작으면 내림
+
+    if (Math.floor(all_CBM * 10) % 10 >= 1) {
+        //1보다 크면 소수점 다 버리고 1더함 = 소수점 1의자리 올림
+        calc_CBM = Math.floor(all_CBM) + 1;
+    } else {
+        //1보다 작으면 소수점 버림
+        calc_CBM = Math.floor(all_CBM);
+    }
+    console.log("calc_CBM", calc_CBM);
+    //계산용 CBM으로 CBM운임 계산
+    if (calc_CBM >= 14) {
+        //14 이상이면
+        price_CBM = ((calc_CBM - 14) * 10000) + 70000;
+    } else {
+        price_CBM = (calc_CBM - 4) * 7000 ;
+    }
+    
+    //가격이 음수면 0으로 변환
+    if(price_CBM < 0){
+        price_CBM = 0;
+    }
+    
+
+    //용달 추가비 계산--------------------------------------------------------------------------
+    //체크박스 값 배열로 저장
+    var checkArray = new Array();
+    var all_truck_price = 0;
+
+    $("input[name=truck]:checked").each(function () {
+        checkArray.push(Number($(this).val()));
+    })
+    console.log("checkArray", checkArray);
+    //배열저장된 가격 합산
+    for (var i = 0; i < checkArray.length; i++) {
+        all_truck_price = all_truck_price + checkArray[i];
+    }
+    
+    
+    var price_length_basic = price_length + basic_price;
+    var price_weigth_basic = price_weigth + basic_price;
+    var price_CBM_basic = price_CBM + basic_price;
+    //1.2배 체크
+    //길이 6m이상 or 무게 10000이상 or CBM 25이상 일때 => 전부 1.2배
+    if(calc_length >= 600 || calc_weight >= 10000 || calc_CBM>=25){
+        price_length_basic = price_length_basic*1.2;
+        price_weigth_basic = price_weigth_basic*1.2;
+        price_CBM_basic = price_CBM_basic*1.2;
+        
+        //천의 자리 올림
+        price_length_basic = Math.ceil(price_length_basic/10000)*10000;
+        price_weigth_basic = Math.ceil(price_weigth_basic/10000)*10000;
+        price_CBM_basic = Math.ceil(price_CBM_basic/10000)*10000;
+        
+    }
+
+
+    //길이
+    $('#calc_length').html(numberWithCommas(calc_length));
+    $('#calc_CBM').html(numberWithCommas(calc_CBM));
+    //운임가격
+    $('#price_length').html(numberWithCommas(price_length));
+    $('#price_weigth').html(numberWithCommas(price_weigth));
+    $('#price_CBM').html(numberWithCommas(price_CBM));
+    //용달가격
+    $('#truck_price').html(numberWithCommas(all_truck_price));
+    //총운임
+    $('#price_length_result').html(numberWithCommas(price_length_basic) + "<br/> + "+ numberWithCommas(all_truck_price));
+    $('#price_weigth_result').html(numberWithCommas(price_weigth_basic) + "<br/> + "+ numberWithCommas(all_truck_price));
+    $('#price_CBM_result').html(numberWithCommas(price_CBM_basic) + "<br/> + "+ numberWithCommas(all_truck_price));
+}
+
+
+//용달비 체크 클릭시 체크박스 값 배열로 저장
+$("input[name=truck]").click(function () {
+    calc_price();
+});
+
+//추가요금 인풋 넣으면 체크박스에 val로 넣기
+$("#price_add_2_1").keyup(function () {
+    $("#price_add_2").val($("#price_add_2_1").val());
+    calc_price();
+});
+$("#price_add_3_1").keyup(function () {
+    $("#price_add_3").val($("#price_add_3_1").val());
+    calc_price();
+});
+$("#price_add_4_1").keyup(function () {
+    $("#price_add_4").val($("#price_add_4_1").val());
+    calc_price();
+});

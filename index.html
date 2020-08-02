@@ -86,7 +86,7 @@
                                     <input style="width: 50px" type="tel" pattern="[0-9]*" class="form-control" id="container_size_2" placeholder="폭" value="0"> X
 
                                     <input style="width: 50px" type="tel" pattern="[0-9]*" class="form-control" id="container_size_3" placeholder="고" value="0"> cm
-                                    
+
                                     <button type="button" class="btn btn-default form-control container_apply_btn" style="width: 90px;margin-left: 10px;height: 25px;">적용</button>
                                 </div>
                             </form>
@@ -131,6 +131,143 @@
                             <button type="button" onclick="start_bubbleSort2_2_btn();" class="btn btn-default btn-block" style="width: 24%;margin-top: 5px;display: inline-block;float: left;"><span class="glyphicon glyphicon-resize-vertical" aria-hidden="true"></span> 세로 太</button>
 
                         </div>
+                    </div>
+                </div>
+                <div class="panel panel_GS_gray ">
+                    <div class="panel-heading" id="togle_btn4" style="cursor: pointer;">
+                        <h3 class="panel-title" id="panel-title">비용 계산<a class="anchorjs-link" href="#panel-title"><span class="anchorjs-icon"></span></a><span class="glyphicon glyphicon-chevron-down" aria-hidden="true" style="float: right; "></span></h3>
+                    </div>
+                    <div class="panel-body" id="togle_body4">
+                        <div class="radio">
+                            <label>
+                                <input type="radio" name="basic_price" id="basic_price_1" value="80000" checked>
+                                <span>80,000</span>
+                                <br />인천, 부천, 안산, 시흥, 광명, 군포, 의왕, 안양, 과천
+                                <br /> 수원, 용인, 화성, 평택, 오산, 성남, 하남, 구리, 안성
+                                <br />고양(일산), 김포, 파주
+                                <br />천안, 아산
+                            </label><br />
+                            <label>
+                                <input type="radio" name="basic_price" id="basic_price_4" value="85000">
+                                <span>85,000</span>
+                                <br />서울
+                            </label><br />
+                            <label>
+                                <input type="radio" name="basic_price" id="basic_price_2" value="90000">
+                                <span>90,000</span>
+                                <br />광주, 이천, 여주
+                            </label><br />
+                            <label>
+                                <input type="radio" name="basic_price" id="basic_price_5" value="100000">
+                                <span>100,000</span>
+                                <br />진천, 음성, 충주, 청주, 세종, 대전, 증평, 괴산
+                            </label><br />
+                            <label>
+                                <input type="radio" name="basic_price" id="basic_price_3" value="105000">
+                                <span>105,000</span>
+                                <br />의정부, 양주, 포천, 동두천, 남양주
+                            </label><br />
+                        </div>
+<hr/>
+                        <form class="form-inline">
+                           <div class="form-group">
+                                <strong>용달비용</strong><br />
+                                <span style="width: 100px; display: inline-block">서울, 인천, 경기</span>
+                                <label class="checkbox-inline" style="margin-left: 10px;">
+                                    <input type="checkbox" id="price_truck_1_1" value=40000 name="truck">
+                                    1톤 40,000원
+                                </label>
+                                <label class="checkbox-inline" style="margin-left: 10px;">
+                                    <input type="checkbox" id="price_truck_1_2" value=50000 name="truck">
+                                    2.5톤 50,000원
+                                </label>
+                                <br />
+                                <span style="width: 100px; display: inline-block">충청, 강원</span>
+                                <label class="checkbox-inline" style="margin-left: 10px;">
+                                    <input type="checkbox" id="price_truck_2_1" value=60000 name="truck">
+                                    1톤 60,000원
+                                </label>
+                                <label class="checkbox-inline" style="margin-left: 10px;">
+                                    <input type="checkbox" id="price_truck_2_2" value=80000 name="truck">
+                                    2.5톤 80,000원
+                                </label>
+                                <br />
+                                <span style="width: 100px; display: inline-block">전라</span>
+                                <label class="checkbox-inline" style="margin-left: 10px;">
+                                    <input type="checkbox" id="price_truck_3_1" value=50000 name="truck">
+                                    1톤 50,000원
+                                </label>
+                                <label class="checkbox-inline" style="margin-left: 10px;">
+                                    <input type="checkbox" id="price_truck_3_2" value=70000 name="truck">
+                                    2.5톤 70,000원
+                                </label>
+                                
+                            </div>
+                            <div class="form-group">
+                                <strong>추가요금</strong><br />
+                                <label class="checkbox-inline" style="margin-left: 10px;">
+                                    <input type="checkbox" id="price_add_1" value=30000 name="truck">
+                                    작업비 30,000원
+                                </label>
+
+                                <label class="checkbox-inline" style="margin-left: 10px;">
+                                    <input type="checkbox" id="price_add_2" value=0 name="truck">
+                                    추가1
+                                </label>
+                                    <input style="width: 100px; margin-right:10px" type="text" class="form-control" id="price_add_2_1" placeholder="">
+                                <label class="checkbox-inline" style="margin-left: 10px;">
+                                    <input type="checkbox" id="price_add_3" value=0 name="truck">
+                                    추가2
+                                </label>
+                                    <input style="width: 100px; margin-right:10px" type="text" class="form-control" id="price_add_3_1" placeholder="">
+                                <label class="checkbox-inline" style="margin-left: 10px;">
+                                    <input type="checkbox" id="price_add_4" value=0 name="truck">
+                                    추가3
+                                </label>
+                                    <input style="width: 100px; margin-right:10px" type="text" class="form-control" id="price_add_4_1" placeholder="">
+
+                            </div>
+                        </form>
+                        <hr/>
+                           <table class="table table-hover table-bordered" style="text-align: center;">
+                            <thead>
+                                <tr>
+                                   <th></th>
+                                    <th scope="col"style="text-align: center;">길이</th>
+                                    <th scope="col"style="text-align: center;">중량</th>
+                                    <th scope="col"style="text-align: center;">CBM</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                   <td>치수</td>
+                                    <td id="calc_length"></td>
+                                    <td id="calc_weigth">  <input type="text" id="calc_weigth_input" value=0> kg</td>
+                                    <td id="calc_CBM"></td>
+                                </tr>
+                                <tr>
+                                   <td>기본비용</td>
+                                    <td colspan="3" id="basic_price"></td>
+                                </tr>
+                                <tr>
+                                   <td>계산 운임</td>
+                                    <td id="price_length"></td>
+                                    <td id="price_weigth"></td>
+                                    <td id="price_CBM"></td>
+                                </tr>
+                                <tr>
+                                   <td>추가비용</td>
+                                    <td colspan="3" id="truck_price" ></td>
+                                </tr>
+                                <tr>
+                                   <td>총 운임</td>
+                                    <td id="price_length_result"></td>
+                                    <td id="price_weigth_result"> </td>
+                                    <td id="price_CBM_result"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
                     </div>
                 </div>
             </div>

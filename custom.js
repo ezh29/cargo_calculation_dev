@@ -891,18 +891,21 @@ function calc_price() {
     var price_CBM = 0;
 
     //길이운임 계산-------------------------------------------------------------------------
-    //긴 길이를 calc_length에 입력
-    if (full_width >= full_height) {
-        calc_length = full_width;
-    } else {
-        calc_length = full_height;
-    }
-
-    if (calc_length >= 100) {
-        price_length = Math.ceil((calc_length - 100) / 20) * 7000;
-    } else {
-        //길이가 100 이하라 계산 안함
-    }
+//    //긴 길이를 calc_length에 입력
+//    if (full_width >= full_height) {
+//        calc_length = full_width;
+//    } else {
+//        calc_length = full_height;
+//    }
+//
+//    if (calc_length >= 100) {
+//        price_length = Math.ceil((calc_length - 100) / 20) * 7000;
+//    } else {
+//        //길이가 100 이하라 계산 안함
+//    }
+    
+    //20200805 무조건 길이가 우선으로 하게 수정
+     calc_length = full_height;
     
     //무게운임---------------------------------------------------------------------------------
     calc_weight = $('#calc_weigth_input').val();

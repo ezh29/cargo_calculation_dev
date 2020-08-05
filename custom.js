@@ -897,15 +897,16 @@ function calc_price() {
 //    } else {
 //        calc_length = full_height;
 //    }
-//
-//    if (calc_length >= 100) {
-//        price_length = Math.ceil((calc_length - 100) / 20) * 7000;
-//    } else {
-//        //길이가 100 이하라 계산 안함
-//    }
-    
     //20200805 무조건 길이가 우선으로 하게 수정
      calc_length = full_height;
+    
+    if (calc_length >= 100) {
+        price_length = Math.ceil((calc_length - 100) / 20) * 7000;
+    } else {
+        //길이가 100 이하라 계산 안함
+    }
+    
+    
     
     //무게운임---------------------------------------------------------------------------------
     calc_weight = $('#calc_weigth_input').val();

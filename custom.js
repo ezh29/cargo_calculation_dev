@@ -873,6 +873,8 @@ $("input:radio[name=basic_price]").click(function () {
     basic_price = $('input[name="basic_price"]:checked').val();
     basic_price = Number(basic_price);
     $('#basic_price').html(numberWithCommas(basic_price));
+    //기본요금 바꾸고 계산 다시돌림
+    calc_price();
 });
 
 //무게 인풋 키 감지
